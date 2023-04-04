@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://www.ruralserviciosinformaticos.com/XSD/SecurityHeader/" 
+xmlns:shc="http://www.ruralserviciosinformaticos.com/XSD/SecurityHeader/"
+elementFormDefault="qualified">	
+
+
+<element name="RSI_Header" type="shc:t_header_type"/>
+<element name="RSI_HeaderResponse" type="shc:t_header_response_type"/>
+	<complexType name="t_header_type">
+		<sequence>
+			<element name="idCorrelacion" type="string" minOccurs="1"	nillable="true" />
+			<element name="idCliente" type="string" minOccurs="1"	nillable="false" />
+			<element name="idToken" type="string" minOccurs="0"		nillable="false" />
+			<element name="idDispositivo" type="string" minOccurs="0"		nillable="false" />
+			<element name="entidad" type="string" minOccurs="1"		nillable="false" />
+			<element name="usuario" type="string" minOccurs="0"	    	nillable="false" />
+			<element name="acuerdoBE" type="string"  minOccurs="0"	    nillable="false" />
+			<element name="canal" type="string"  minOccurs="0"	    nillable="false" />
+			<element name="idInternoPe" type="string"  minOccurs="0"	    nillable="false" />
+		</sequence>
+	</complexType>
+	<complexType name="t_header_response_type">
+		<sequence>
+			<element name="IDCorrelacion" type="string" minOccurs="1"		nillable="false" />		
+		</sequence>
+	</complexType>
+
+</schema>

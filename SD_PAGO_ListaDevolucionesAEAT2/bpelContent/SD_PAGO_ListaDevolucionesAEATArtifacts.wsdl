@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:ns1="http://bphx.com/SD_PAGO_ListaDevolucionesAEAT"
+	xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
+	xmlns:sec="http://www.ruralserviciosinformaticos.com/XSD/SecurityHeader/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.ruralserviciosinformaticos.com/dominio/SD_PAGO_ListaDevolucionesAEAT"
+	xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop"
+	xmlns:wsdl="http://bphx.com/TR_BD_LST_HAC_EMP_SOA"
+	xmlns:wsdl1="http://bphx.com/TR_BD_VALIDA_SUBAC_SOA"
+	name="SD_PAGO_ListaDevolucionesAEAT"
+	targetNamespace="http://www.ruralserviciosinformaticos.com/dominio/SD_PAGO_ListaDevolucionesAEAT">
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+		TYPE DEFINITION - List of types participating in this BPEL process The BPEL 
+		Designer will generate default request and response types but you can define 
+		or import any XML Schema type and use them as part of the message types. 
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<plnk:partnerLinkType
+		name="TR_BD_LST_HAC_EMP_SOAPartnerLinkType">
+		<plnk:role name="TR_BD_LST_HAC_EMP_SOARole"
+			portType="wsdl:TR_BD_LST_HAC_EMP_SOA_PortType" />
+	</plnk:partnerLinkType>
+	<plnk:partnerLinkType
+		name="TR_BD_VALIDA_SUBAC_SOAPartnerLinkType">
+		<plnk:role name="TR_BD_VALIDA_SUBAC_SOARole"
+			portType="wsdl1:TR_BD_VALIDA_SUBAC_SOA_PortType" />
+	</plnk:partnerLinkType>
+	<import location="TR_BD_LST_HAC_EMP_SOA.wsdl"
+		namespace="http://bphx.com/TR_BD_LST_HAC_EMP_SOA" />
+	<import location="TR_BD_VALIDA_SUBAC_SOA.wsdl"
+		namespace="http://bphx.com/TR_BD_VALIDA_SUBAC_SOA" />
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			attributeFormDefault="unqualified" elementFormDefault="qualified"
+			targetNamespace="http://www.ruralserviciosinformaticos.com/dominio/SD_PAGO_ListaDevolucionesAEAT">
+			<import
+				namespace="http://bphx.com/SD_PAGO_ListaDevolucionesAEAT"
+				schemaLocation="EE_PAGO_ListaDevolucionesAEAT.xsd" />
+			<import
+				namespace="http://www.ruralserviciosinformaticos.com/XSD/SecurityHeader/"
+				schemaLocation="SecurityHeader.xsd" />
+			<element name="SD_PAGO_ListaDevolucionesAEATRequest">
+				<complexType>
+					<sequence>
+						<element name="EE_I_ListaDevolucionesAEAT"
+							type="ns1:EE_I_ListaDevolucionesAEAT_type" />
+					</sequence>
+				</complexType>
+			</element>
+
+			<element name="SD_PAGO_ListaDevolucionesAEATResponse">
+				<complexType>
+					<sequence>
+						<element name="EE_O_ListaDevolucionesAEAT"
+							type="ns1:EE_O_ListaDevolucionesAEAT_type" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+	</types>
+
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+		MESSAGE TYPE DEFINITION - Definition of the message types used as part of 
+		the port type defintions ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<message name="SD_PAGO_ListaDevolucionesAEATRequestMessage">
+		<part element="tns:SD_PAGO_ListaDevolucionesAEATRequest"
+			name="payload" />
+	</message>
+	<message name="SD_PAGO_ListaDevolucionesAEATResponseMessage">
+		<part element="tns:SD_PAGO_ListaDevolucionesAEATResponse"
+			name="payload" />
+	</message>
+	<message name="RSI_Header_Input">
+		<part element="sec:RSI_Header" name="RSI_Header" />
+	</message>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+		PORT TYPE DEFINITION - A port type groups a set of operations into a logical 
+		service unit. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<!-- portType implemented by the SD_PAGO_ListaDevolucionesAEAT BPEL process -->
+	<portType name="SD_PAGO_ListaDevolucionesAEAT">
+		<operation name="ListaDevolucionesAEAT">
+			<input
+				message="tns:SD_PAGO_ListaDevolucionesAEATRequestMessage" />
+			<output
+				message="tns:SD_PAGO_ListaDevolucionesAEATResponseMessage" />
+		</operation>
+	</portType>
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+		PARTNER LINK TYPE DEFINITION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<plnk:partnerLinkType
+		name="SD_PAGO_ListaDevolucionesAEAT">
+		<plnk:role name="SD_PAGO_ListaDevolucionesAEATProvider"
+			portType="tns:SD_PAGO_ListaDevolucionesAEAT" />
+	</plnk:partnerLinkType>
+
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+		BINDING DEFINITION - Defines the message format and protocol details for 
+		a web service. ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<binding name="SD_PAGO_ListaDevolucionesAEATBinding"
+		type="tns:SD_PAGO_ListaDevolucionesAEAT">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="ListaDevolucionesAEAT">
+			<soap:operation
+				soapAction="http://www.ruralserviciosinformaticos.com/dominio/SD_PAGO_ListaDevolucionesAEAT/ListaDevolucionesAEAT" />
+			<input>
+				<soap:header message="tns:RSI_Header_Input"
+					part="RSI_Header" use="literal" />
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+		SERVICE DEFINITION - A service groups a set of ports into a service unit. 
+		~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<service name="SD_PAGO_ListaDevolucionesAEAT">
+		<port binding="tns:SD_PAGO_ListaDevolucionesAEATBinding"
+			name="SD_PAGO_ListaDevolucionesAEATPort">
+			<soap:address
+				location="http://localhost:8080/SD_PAGO_ListaDevolucionesAEAT" />
+		</port>
+	</service>
+</definitions>

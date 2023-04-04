@@ -1,0 +1,62 @@
+<?xml version='1.0'  encoding='UTF-8'?>
+<wsdl:definitions
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:tns="http://bphx.com/SD_PAGO_ListaDevolucionesAEAT"
+	xmlns:sec="http://www.ruralserviciosinformaticos.com/XSD/SecurityHeader/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	targetNamespace="http://bphx.com/SD_PAGO_ListaDevolucionesAEAT">
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import
+				namespace="http://bphx.com/SD_PAGO_ListaDevolucionesAEAT"
+				schemaLocation="EE_PAGO_ListaDevolucionesAEAT.xsd" />
+			<import
+				namespace="http://www.ruralserviciosinformaticos.com/XSD/SecurityHeader/"
+				schemaLocation="SecurityHeader.xsd" />
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="RSI_Header_Input">
+		<wsdl:part element="sec:RSI_Header" name="RSI_Header"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ListaDevolucionesAEAT_Input">
+		<wsdl:part element="tns:EE_I_ListaDevolucionesAEAT"
+			name="ListaDevolucionesAEAT_Input"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="ListaDevolucionesAEAT_Output">
+		<wsdl:part element="tns:EE_O_ListaDevolucionesAEAT"
+			name="ListaDevolucionesAEAT_Output"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType
+		name="SD_PAGO_ListaDevolucionesAEAT_PortType">
+		<wsdl:operation name="ListaDevolucionesAEAT">
+			<wsdl:input message="tns:ListaDevolucionesAEAT_Input"></wsdl:input>
+			<wsdl:output message="tns:ListaDevolucionesAEAT_Output"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="SD_PAGO_ListaDevolucionesAEAT_Binder"
+		type="tns:SD_PAGO_ListaDevolucionesAEAT_PortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+		<wsdl:operation name="ListaDevolucionesAEAT">
+			<soap:operation soapAction="ListaDevolucionesAEAT"
+				style="document"></soap:operation>
+			<wsdl:input>
+				<soap:body parts="ListaDevolucionesAEAT_Input"
+					use="literal"></soap:body>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="ListaDevolucionesAEAT_Output"
+					use="literal"></soap:body>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service
+		name="SD_PAGO_ListaDevolucionesAEATQSService">
+		<wsdl:port
+			binding="tns:SD_PAGO_ListaDevolucionesAEAT_Binder"
+			name="SD_PAGO_ListaDevolucionesAEATQSPort">
+			<soap:address
+				location="http://ip:port/services/SD_PAGO_ListaDevolucionesAEAT" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

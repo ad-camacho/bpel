@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03"
+	xmlns:sample="http://www.ruralserviciosinformaticos.com/dominio/SD_PAGO_ListaDevolucionesAEAT"
+	xmlns:TR_BD_VALIDA_SUBAC_SOA="http://bphx.com/TR_BD_VALIDA_SUBAC_SOA"
+	xmlns:TR_BD_LST_HAC_EMP_SOA="http://bphx.com/TR_BD_LST_HAC_EMP_SOA"
+	>
+	<process name="sample:SD_PAGO_ListaDevolucionesAEAT">
+		<active>true</active>
+		<retired>false</retired>
+
+		<provide partnerLink="client">
+			<service name="sample:SD_PAGO_ListaDevolucionesAEAT"
+				port="SD_PAGO_ListaDevolucionesAEATPort" />
+		</provide>
+
+		<invoke partnerLink="TR_BD_VALIDA_SUBAC_SOAPartnerLink">
+			<service
+				name="TR_BD_VALIDA_SUBAC_SOA:TR_BD_VALIDA_SUBAC_SOA_service"
+				port="TR_BD_VALIDA_SUBAC_SOA_port">
+				<endpoint xmlns="http://wso2.org/bps/bpel/endpoint/config"
+					endpointReference="TR_BD_VALIDA_SUBAC_SOA_endpoint.epr" />
+			</service>
+		</invoke>
+
+		<invoke partnerLink="TR_BD_LST_HAC_EMP_SOAPartnerLink">
+			<service name="TR_BD_LST_HAC_EMP_SOA:TR_BD_LST_HAC_EMP_SOA_service"
+				port="TR_BD_LST_HAC_EMP_SOA_port">
+				<endpoint xmlns="http://wso2.org/bps/bpel/endpoint/config"
+					endpointReference="TR_BD_LST_HAC_EMP_SOA_endpoint.epr" />
+			</service>
+		</invoke>
+
+	</process>
+</deploy>

@@ -1,0 +1,52 @@
+<?xml version='1.0'  encoding='UTF-8'?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://bphx.com/SD_PAGO_ListaDevolucionesAEAT"
+	xmlns:ns="http://bphx.com/SD_PAGO_ListaDevolucionesAEAT"
+	xmlns:ego="http://www.ruralserviciosinformaticos.com/XSD/ErrorGenerico_O/"
+
+	targetNamespace="http://bphx.com/SD_PAGO_ListaDevolucionesAEAT"
+	elementFormDefault="qualified">
+	<import
+		namespace="http://www.ruralserviciosinformaticos.com/XSD/ErrorGenerico_O/"
+		schemaLocation="EE_O_ErrorGenerico.xsd"></import>
+	<element name="EE_I_ListaDevolucionesAEAT"
+		type="ns:EE_I_ListaDevolucionesAEAT_type" />
+	<element name="EE_O_ListaDevolucionesAEAT"
+		type="ns:EE_O_ListaDevolucionesAEAT_type" />
+	<complexType name="EE_I_ListaDevolucionesAEAT_type">
+		<sequence>
+			<element name="codigoEntidad" type="string" minOccurs="1" />
+			<element name="iban" type="string" minOccurs="1" />
+			<element name="fechaDesde" type="date" minOccurs="0" />
+			<element name="fechaHasta" type="date" minOccurs="0" />
+			<element name="indLista" type="string" minOccurs="0" />
+			<element name="numeroSecuencial" type="string" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="EE_O_ListaDevolucionesAEAT_type">
+		<sequence>
+			<element name="codigoRetorno" type="int" minOccurs="1" />
+			<element name="Errores" type="ego:Error_type" minOccurs="0" />
+			<element name="Respuesta" type="ns:Respuesta" minOccurs="1" />
+		</sequence>
+	</complexType>
+	<complexType name="Respuesta">
+		<sequence>
+			<element name="numeroRegistros" type="int" minOccurs="1" />
+			<element name="masDatos" type="int" minOccurs="1" />
+			<element name="numeroSecuencial" type="string" minOccurs="0" />
+			<element name="indLista" type="string" minOccurs="0" />
+			<element name="ListaDevolucionesAEAT"
+				type="ns:ListaDevolucionesAEAT" minOccurs="1" maxOccurs="50" />
+		</sequence>
+	</complexType>
+	<complexType name="ListaDevolucionesAEAT">
+		<sequence>
+			<element name="codigoImpuestoAEAT" type="long" minOccurs="0" />
+			<element name="fechaEjecucion" type="date" minOccurs="0" />
+			<element name="tipoImpuesto" type="string" minOccurs="0" />
+			<element name="codigoModeloImpuesto" type="int" minOccurs="0" />
+			<element name="importe" type="decimal" minOccurs="0" />
+		</sequence>
+	</complexType>
+</schema>
